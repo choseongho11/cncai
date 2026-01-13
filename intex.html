@@ -80,12 +80,14 @@
             text-align: center;
         }
 
+        /* 수정된 부분: 충청남도의회 텍스트 굵게 */
         .hero h2 {
-            font-size: 1.5rem;
-            font-weight: 300;
-            margin-bottom: 15px;
+            font-size: 1.8rem; /* 크기 약간 키움 */
+            font-weight: 700;  /* 굵게 변경 (기존 300) */
+            margin-bottom: 10px;
             letter-spacing: 2px;
-            opacity: 0.9;
+            color: #ffffff;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.5); /* 잘 보이도록 그림자 추가 */
         }
 
         .hero h1 {
@@ -124,7 +126,7 @@
 
         /* 중앙 아이콘 (차트 모양) */
         .icon-box {
-            font-size: 4rem; /* 아이콘 크기 */
+            font-size: 4rem; 
             color: var(--accent-color);
             margin-bottom: 10px;
             filter: drop-shadow(0 0 10px rgba(230, 184, 92, 0.4));
@@ -145,6 +147,7 @@
         /* 모바일 대응 */
         @media (max-width: 768px) {
             .hero h1 { font-size: 2.5rem; }
+            .hero h2 { font-size: 1.5rem; }
             .enter-card { padding: 30px 40px; width: 85%; }
             .icon-box { font-size: 3rem; }
             .text-box { font-size: 1.5rem; }
@@ -173,7 +176,6 @@
             </div>
             
             <div class="text-box">시스템 접속하기</div>
-            <div class="sub-text">AI 기반 예산·결산 분석</div>
         </a>
     </section>
 
