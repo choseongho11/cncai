@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>충청남도의회 AI 의정브레인</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --primary-color: #0d1b3e;
+            --accent-color: #e6b85c;
+            --text-white: #ffffff;
+            --glass-bg: rgba(13, 27, 62, 0.65);
+            --glass-border: rgba(255, 255, 255, 0.2);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Noto Sans KR', sans-serif;
+        }
+
+        body {
+            background-color: var(--primary-color);
+            color: var(--text-white);
+            overflow: hidden;
+            height: 100vh;
+        }
+
+        .bg-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            z-index: -1;
+            /* 배경 이미지 설정 */
+            background: linear-gradient(to bottom, rgba(13,27,62,0.5), #0d1b3e), url('Gemini_Generated_Image_daeolrdaeolrdaeo.png');
+            background-size: cover;
+            background-position: center;
+        }
+
+        header {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            position: fixed;
+            width: 100%;
+            z-index: 1000;
+        }
+
+        .logo {
+            font-size: 1.2rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        /* 상단 의회 마크 이미지 (mark.png 필요) */
+        .logo img {
+            height: 35px;
+            width: auto;
+        }
+
+        .logo span { color: var(--accent-color); font-weight: 900; }
+
+        .hero {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+
+        /* 수정된 부분: 충청남도의회 텍스트 굵게 */
+        .hero h2 {
+            font-size: 1.8rem; /* 크기 약간 키움 */
+            font-weight: 700;  /* 굵게 변경 (기존 300) */
+            margin-bottom: 10px;
+            letter-spacing: 2px;
+            color: #ffffff;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.5); /* 잘 보이도록 그림자 추가 */
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 50px;
+            text-shadow: 0 4px 10px rgba(0,0,0,0.5);
+        }
+
+        .hero h1 span { color: var(--accent-color); }
+
+        /* 중앙 접속 카드 */
+        .enter-card {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(20px);
+            border: 2px solid var(--glass-border);
+            border-radius: 20px;
+            padding: 50px 80px;
+            text-decoration: none;
+            color: white;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            gap: 20px;
+        }
+
+        .enter-card:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.2);
+            border-color: var(--accent-color);
+            box-shadow: 0 0 40px rgba(230, 184, 92, 0.3);
+        }
+
+        /* 중앙 아이콘 (차트 모양) */
+        .icon-box {
+            font-size: 4rem; 
+            color: var(--accent-color);
+            margin-bottom: 10px;
+            filter: drop-shadow(0 0 10px rgba(230, 184, 92, 0.4));
+        }
+
+        .text-box {
+            font-size: 2rem;
+            font-weight: 700;
+        }
+        
+        .sub-text {
+            font-size: 1rem;
+            font-weight: 300;
+            opacity: 0.8;
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        /* 모바일 대응 */
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2.5rem; }
+            .hero h2 { font-size: 1.5rem; }
+            .enter-card { padding: 30px 40px; width: 85%; }
+            .icon-box { font-size: 3rem; }
+            .text-box { font-size: 1.5rem; }
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="bg-container"></div>
+
+    <header>
+        <a href="http://121.189.21.229" class="logo">
+            <img src="mark.png" alt="충청남도의회">
+            충청남도의회 <span>AI 의정브레인</span>
+        </a>
+    </header>
+
+    <section class="hero">
+        <h2>충청남도의회</h2>
+        <h1><span>AI</span> 의정브레인</h1>
+        
+        <a href="http://121.189.21.229" class="enter-card">
+            <div class="icon-box">
+                <i class="fa-solid fa-chart-pie"></i>
+            </div>
+            
+            <div class="text-box">시스템 접속하기</div>
+        </a>
+    </section>
+
+</body>
+</html>
