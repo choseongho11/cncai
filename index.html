@@ -15,7 +15,6 @@
     <style>
         :root {
             --primary-bg: #0d1b3e; 
-            /* 공유해주신 노란색 코드 */
             --accent-color: #DBAD58;
             --text-white: #ffffff;
             --glass-bg: rgba(30, 30, 30, 0.7);
@@ -48,7 +47,6 @@
             background-position: center;
         }
 
-        /* 왼쪽 상단 로고 */
         .top-left-logo {
             position: fixed;
             top: 30px;
@@ -60,7 +58,6 @@
             text-decoration: none;
         }
 
-        /* 오른쪽 상단 로고 */
         .top-right-logo {
             position: fixed;
             top: 30px;
@@ -85,7 +82,6 @@
             justify-content: center;
         }
 
-        /* [수정] 왼쪽 상단 한글 로고: 밝은 회색(#e0e0e0)으로 변경 */
         .logo-title-kr {
             font-family: 'Gothic A1', sans-serif;
             font-size: 1.6rem;
@@ -96,7 +92,6 @@
             text-shadow: 0 2px 5px rgba(0,0,0,0.7);
         }
 
-        /* [수정] 왼쪽 상단 영문 로고: 조금 더 차분한 밝은 회색(#cccccc)으로 변경 */
         .logo-title-en {
             font-size: 0.55rem;
             font-weight: 500;
@@ -163,6 +158,31 @@
             box-shadow: 0 0 30px rgba(219, 173, 88, 0.4);
         }
 
+        /* 매뉴얼 버튼 스타일 추가 */
+        .manual-btn {
+            margin-top: 25px;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 35px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--accent-color);
+            border-radius: 50px;
+            color: var(--accent-color);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(5px);
+        }
+
+        .manual-btn:hover {
+            background: var(--accent-color);
+            color: #0d1b3e;
+            box-shadow: 0 5px 15px rgba(219, 173, 88, 0.3);
+            transform: scale(1.05);
+        }
+
         .icon-box {
             font-size: 4rem; 
             color: var(--accent-color);
@@ -212,6 +232,7 @@
             .hero h1 { font-size: 2.5rem; }
             .hero h2 { font-size: 1.5rem; }
             .enter-card { padding: 30px 20px; width: 90%; }
+            .manual-btn { padding: 10px 25px; font-size: 0.9rem; }
             .icon-box { font-size: 3rem; }
             .text-box { font-size: 1.5rem; }
             .sub-text { font-size: 0.9rem; }
@@ -226,7 +247,6 @@
             footer { padding: 15px; }
             footer p { font-size: 0.6rem; }
         }
-
     </style>
 </head>
 <body>
@@ -235,7 +255,6 @@
 
     <a href="https://council.chungnam.go.kr" class="top-left-logo" target="_blank">
         <img src="mark.png" alt="의회마크" class="logo-mark">
-        
         <div class="logo-text-group">
             <div class="logo-title-kr">충청남도의회</div>
             <div class="logo-title-en">CHUNGCHEONGNAM-DO COUNCIL</div>
@@ -254,12 +273,15 @@
             <div class="icon-box">
                 <i class="fa-solid fa-chart-pie"></i>
             </div>
-            
             <div class="text-box">시스템 접속하기</div>
             <div class="sub-text">
                 AI 기반 예산·결산 분석 | 행정사무감사 지원<br>
                 회의록 검색 | 자치법규 작성 지원
             </div>
+        </a>
+
+        <a href="manual.html" class="manual-btn" target="manual.html">
+            <i class="fa-solid fa-book-open"></i> 사용자 메뉴얼 확인하기
         </a>
     </section>
 
