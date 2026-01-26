@@ -202,29 +202,85 @@
         </section>
 
         <!-- 섹션 3: 메뉴 가이드 -->
-        <section id="menu" class="mb-20">
-            <h2 class="text-3xl font-bold mb-8 text-slate-800">03. 핵심 메뉴 가이드</h2>
+<section id="menu" class="mb-20">
+            <h2 class="text-3xl font-bold mb-8 text-slate-800">03. 핵심 메뉴 및 인터페이스 가이드</h2>
             <div class="card">
-                <p class="mb-6 text-slate-600">상단 <strong>모델 선택 메뉴</strong>를 클릭하여 의정 활동의 성격에 맞는 AI 보좌관을 호출하세요.</p>
-                <div class="screenshot-container">
-                    <img src="menu.png" alt="메뉴 선택 화면">
+                <div class="flex flex-col lg:flex-row gap-10">
+                    <div class="lg:w-1/2 space-y-6">
+                        <div>
+                            <div class="flex items-center gap-2 mb-2">
+                                <span class="bg-blue-100 text-blue-700 font-bold px-2 py-1 rounded text-xs">01</span>
+                                <h3 class="text-xl font-bold text-blue-900">모델 선택 메뉴</h3>
+                            </div>
+                            <p class="text-slate-600 text-sm leading-relaxed ml-7">
+                                상단 메뉴를 통해 <strong>도청/교육청, 행정사무감사, 회의록, 자치법규</strong> 등 분석 목적에 맞는 AI 보좌관을 선택할 수 있습니다. 각 모델은 해당 분야의 특화된 데이터를 우선적으로 참조합니다.
+                            </p>
+                        </div>
+
+                        <div>
+                            <div class="flex items-center gap-2 mb-2">
+                                <span class="bg-blue-100 text-blue-700 font-bold px-2 py-1 rounded text-xs">02</span>
+                                <h3 class="text-xl font-bold text-blue-900">새 채팅 (New Chat)</h3>
+                            </div>
+                            <p class="text-slate-600 text-sm leading-relaxed ml-7">
+                                새로운 주제로 분석을 시작할 때 사용합니다. 이전 대화 맥락이 섞여 오류가 발생하는 것을 방지하기 위해 <strong>주제가 바뀔 때마다 반드시 클릭</strong>해 주세요.
+                            </p>
+                        </div>
+
+                        <div>
+                            <div class="flex items-center gap-2 mb-2">
+                                <span class="bg-blue-100 text-blue-700 font-bold px-2 py-1 rounded text-xs">03</span>
+                                <h3 class="text-xl font-bold text-blue-900">대화 및 결과창</h3>
+                            </div>
+                            <p class="text-slate-600 text-sm leading-relaxed ml-7">
+                                질문에 대한 AI의 분석 결과가 출력됩니다. 답변 하단에는 <strong>참조한 문서의 원문 소스(Source)</strong>가 표시되어, 클릭 시 즉시 근거 자료를 확인할 수 있습니다.
+                            </p>
+                        </div>
+
+                        <div>
+                            <div class="flex items-center gap-2 mb-2">
+                                <span class="bg-blue-100 text-blue-700 font-bold px-2 py-1 rounded text-xs">04</span>
+                                <h3 class="text-xl font-bold text-blue-900">파일 업로드 및 입력</h3>
+                            </div>
+                            <p class="text-slate-600 text-sm leading-relaxed ml-7">
+                                기본 학습 데이터 외에 의원님이 직접 보유하신 <strong>PDF, 엑셀 파일 등을 업로드</strong>하여 즉시 분석할 수 있습니다. 하단 입력창에 구체적인 질문을 입력하세요.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="lg:w-1/2">
+                        <div class="screenshot-container sticky top-10">
+                            <img src="menu.png" alt="메뉴 및 인터페이스 가이드 화면">
+                            <div class="bg-slate-50 p-4 border-t border-slate-200">
+                                <p class="text-xs text-slate-500 leading-tight text-center">
+                                    <i class="fa-solid fa-circle-info mr-1"></i> 
+                                    화면 구성은 사용자 편의를 위해 업데이트될 수 있습니다.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mt-8">
-                    <div class="p-4 border border-slate-200 rounded-lg">
-                        <h4 class="font-bold text-blue-800 mb-2">🏢 도청/교육청</h4>
-                        <p class="text-xs text-slate-500 italic">예산서 및 사업 설명서 분석 특화</p>
+
+                <div class="grid grid-cols-1 md:grid-cols-4 gap-4 mt-12 pt-8 border-t border-slate-100">
+                    <div class="p-4 bg-slate-50 rounded-lg text-center">
+                        <div class="text-2xl mb-2">🏢</div>
+                        <h4 class="font-bold text-blue-800 text-sm">도청/교육청</h4>
+                        <p class="text-[11px] text-slate-500 mt-1">예산서·사업설명서 분석</p>
                     </div>
-                    <div class="p-4 border border-slate-200 rounded-lg">
-                        <h4 class="font-bold text-blue-800 mb-2">🔍 행정사무감사</h4>
-                        <p class="text-xs text-slate-500 italic">감사 요구자료 및 답변 분석</p>
+                    <div class="p-4 bg-slate-50 rounded-lg text-center">
+                        <div class="text-2xl mb-2">🔍</div>
+                        <h4 class="font-bold text-blue-800 text-sm">행정사무감사</h4>
+                        <p class="text-[11px] text-slate-500 mt-1">감사자료 및 답변 검토</p>
                     </div>
-                    <div class="p-4 border border-slate-200 rounded-lg">
-                        <h4 class="font-bold text-blue-800 mb-2">🎙️ 회의록</h4>
-                        <p class="text-xs text-slate-500 italic">회기별 의원별 주요발언 내역 정리 및 원문확인</p>
+                    <div class="p-4 bg-slate-50 rounded-lg text-center">
+                        <div class="text-2xl mb-2">🎙️</div>
+                        <h4 class="font-bold text-blue-800 text-sm">회의록</h4>
+                        <p class="text-[11px] text-slate-500 mt-1">의원별 발언 요약/검색</p>
                     </div>
-                    <div class="p-4 border border-slate-200 rounded-lg">
-                        <h4 class="font-bold text-blue-800 mb-2">📜 자치법규</h4>
-                        <p class="text-xs text-slate-500 italic">조례 초안 생성 및 법률 검토</p>
+                    <div class="p-4 bg-slate-50 rounded-lg text-center">
+                        <div class="text-2xl mb-2">📜</div>
+                        <h4 class="font-bold text-blue-800 text-sm">자치법규</h4>
+                        <p class="text-[11px] text-slate-500 mt-1">조례안 생성 및 검토</p>
                     </div>
                 </div>
             </div>
@@ -245,8 +301,8 @@
                             <div class="interactive-chat">
                                 <p class="text-xs font-bold text-slate-400 mb-1">의원님 질문 예시</p>
                                 <p class="text-sm font-medium">"해양쓰레기 관련 사업을 찾아줘"</p>
-                                <p class="text-sm font-medium">"(사업목록을 바탕으로 추가질문)해양쓰레기정화사업 지원 사업설명서를 확인하고 해당 사업을 분석해줘"</p>
-                                <p class="text-sm font-medium">"(분석결과 답변시 추가 요청)위 답변을 분석보고서로 작성해줘"</p>
+                                <p class="text-sm font-medium">(사업목록을 바탕으로 추가질문)"해양쓰레기정화사업 지원 사업설명서를 확인하고 해당 사업을 분석해줘"</p>
+                                <p class="text-sm font-medium">(분석결과 답변시 추가 요청)"위 답변을 분석보고서로 작성해줘"</p>
                             </div>
                         </div>
                         <div class="mt-8 p-6 bg-slate-900 text-white rounded-xl">
