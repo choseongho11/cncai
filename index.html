@@ -159,8 +159,15 @@
         }
 
         /* 매뉴얼 버튼 스타일 추가 */
-        .manual-btn {
+        .shortcut-row {
             margin-top: 25px;
+            display: flex;
+            gap: 14px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .manual-btn {
             display: inline-flex;
             align-items: center;
             gap: 8px;
@@ -180,6 +187,30 @@
             background: var(--accent-color);
             color: #0d1b3e;
             box-shadow: 0 5px 15px rgba(219, 173, 88, 0.3);
+            transform: scale(1.05);
+        }
+
+        .chatbot-shortcut-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 35px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(126, 206, 244, 0.6);
+            border-radius: 50px;
+            color: #7ecef4;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(5px);
+            cursor: pointer;
+        }
+
+        .chatbot-shortcut-btn:hover {
+            background: rgba(126, 206, 244, 0.15);
+            border-color: #7ecef4;
+            box-shadow: 0 5px 15px rgba(126, 206, 244, 0.25);
             transform: scale(1.05);
         }
 
@@ -294,6 +325,15 @@
             word-break: keep-all;
             position: relative;
             animation: bubbleFadeIn 0.6s ease;
+            cursor: pointer;
+            text-decoration: none;
+            display: block;
+            transition: box-shadow 0.2s ease, transform 0.2s ease;
+        }
+
+        .chatbot-bubble:hover {
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.35), 0 0 0 2px rgba(219, 173, 88, 0.5);
+            transform: translateY(-2px);
         }
 
         .chatbot-bubble::after {
@@ -403,6 +443,8 @@
             .chatbot-bubble { max-width: 190px; font-size: 0.76rem; }
             .chatbot-btn { width: 60px; height: 60px; }
             .robot-svg { width: 60px; height: 60px; }
+            .shortcut-row { gap: 10px; }
+            .chatbot-shortcut-btn { padding: 10px 22px; font-size: 0.9rem; }
         }
     </style>
 </head>
@@ -442,18 +484,25 @@
             </div>
         </a>
 
-        <a href="manual.html" class="manual-btn" target="manual.html">
-            <i class="fa-solid fa-book-open"></i> 사용자 메뉴얼 확인하기
-        </a>
+        <div class="shortcut-row">
+            <a href="manual.html" class="manual-btn" target="manual.html">
+                <i class="fa-solid fa-book-open"></i> 사용자 메뉴얼 확인하기
+            </a>
+            <a href="#" class="chatbot-shortcut-btn"
+               onclick="window.open('http://121.185.136.195:3000/','chatbot','width=700,height=880,top='+Math.round((screen.height-750)/2)+',left='+Math.round((screen.width-520)/2)+',resizable=yes,scrollbars=yes'); return false;">
+                <i class="fa-solid fa-comments"></i> AI 챗봇 바로가기
+            </a>
+        </div>
 
     </section>
 
     <!-- 챗봇 플로팅 버튼 -->
     <div class="chatbot-float">
-        <div class="chatbot-bubble">
+        <a href="#" class="chatbot-bubble"
+           onclick="window.open('http://121.185.136.195:3000/','chatbot','width=700,height=880,top='+Math.round((screen.height-750)/2)+',left='+Math.round((screen.width-520)/2)+',resizable=yes,scrollbars=yes'); return false;">
             <span class="bubble-label">충청남도AI의정브레인 챗봇</span>
             <span id="tw-text"></span><span class="tw-cursor"></span>
-        </div>
+        </a>
         <a href="#" class="chatbot-btn" title="충청남도AI의정브레인 챗봇"
            onclick="window.open('http://121.185.136.195:3000/','chatbot','width=700,height=880,top='+Math.round((screen.height-750)/2)+',left='+Math.round((screen.width-520)/2)+',resizable=yes,scrollbars=yes'); return false;">
             <svg class="robot-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-label="충청남도의정브레인 챗봇">
