@@ -1,643 +1,297 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>충청남도의회AI의정브레인</title>
-    <link rel="icon" href="mark.png" type="image/png">
-    <link rel="shortcut icon" href="mark.png" type="image/png">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>충청남도의회 AI의정브레인</title>
+<style>
+  :root{
+    --magenta:#c2299a;
+    --pink:#e8389c;
+    --blue:#5b5bd6;
+    --gold:#f0a514;
+    --gold-dark:#c97a0a;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html,body{
+    width:100%;height:100%;
+    font-family:"Malgun Gothic","Apple SD Gothic Neo",sans-serif;
+    background:#f1eefc;
+  }
+  body{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    min-height:100vh;
+    padding:24px;
+  }
+  .card{
+    width:480px;
+    padding:56px 48px 48px;
+    background:#ffffff;
+    border-radius:28px;
+    box-shadow:0 20px 50px rgba(106,31,143,0.10);
+    text-align:center;
+    animation:fadeIn .35s ease-out;
+  }
+  .header-row{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:5px;
+    margin-bottom:6px;
+    transform:translateX(-16px);
+  }
+  .badge{
+    width:58px;height:58px;
+    border-radius:50%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    flex-shrink:0;
+    overflow:hidden;
+  }
+  .badge img{
+    width:100%;
+    height:100%;
+    object-fit:contain;
+  }
+  .brand-kr{
+    font-size:22px;
+    font-weight:900;
+    color:#0d1f4c;
+    letter-spacing:-0.8px;
+    -webkit-text-stroke:0.3px #0d1f4c;
+  }
+  .brand-kr b{
+    color:#0d1f4c;
+    font-weight:900;
+  }
+  .brand-text{
+    display:flex;
+    flex-direction:column;
+    align-items:flex-start;
+    gap:2px;
+  }
+  .brand-sub{
+    font-size:11.5px;
+    color:#9aa0ac;
+    letter-spacing:1.3px;
+    margin-left:4px;
+  }
+  .lead{
+    font-size:13.5px;
+    color:#7a7f8a;
+    margin-top:28px;
+    margin-bottom:16px;
+  }
 
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Gothic+A1:wght@900&display=swap" rel="stylesheet">
+  .btn-group{
+    display:flex;
+    flex-direction:column;
+    gap:14px;
+  }
+  .btn{
+    display:flex;
+    align-items:center;
+    gap:16px;
+    padding:20px 22px 18px;
+    border-radius:16px;
+    text-decoration:none;
+    transition:transform .18s ease, box-shadow .18s ease, filter .15s ease, background .2s ease, color .2s ease, border-color .2s ease;
+    text-align:center;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    -webkit-tap-highlight-color:transparent;
+    position:relative;
+    overflow:hidden;
+  }
+  .btn:hover{
+    transform:translateY(-2px);
+  }
+  .btn:active{
+    transform:translateY(0) scale(.97);
+  }
+  .btn::after{
+    content:'';
+    position:absolute;
+    inset:0;
+    background:rgba(255,255,255,0);
+    border-radius:inherit;
+    transition:background .15s ease;
+    pointer-events:none;
+  }
+  .btn.selected::after{
+    background:rgba(255,255,255,0.12);
+  }
+  .btn-icon{
+    width:52px;height:52px;
+    border-radius:14px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    flex-shrink:0;
+    margin-bottom:6px;
+  }
+  .btn-icon svg{ width:26px; height:26px; }
+  .btn-text-main{
+    font-size:16px;
+    font-weight:900;
+  }
+  .btn-text-sub{
+    font-size:12px;
+    opacity:.85;
+    margin-top:4px;
+  }
+  .btn-arrow{ display:none; }
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
-    <style>
-        :root {
-            --primary-bg: #0d1b3e; 
-            --accent-color: #DBAD58;
-            --text-white: #ffffff;
-            --glass-bg: rgba(30, 30, 30, 0.7);
-            --glass-border: rgba(255, 255, 255, 0.15);
-        }
+  .btn-brain{
+    background:#f4f4f6;
+    border:1.5px solid #eaeaec;
+    color:#3a3f4b;
+    box-shadow:0 6px 16px rgba(106,31,143,0.04);
+  }
+  .btn-brain .btn-icon{ background:linear-gradient(135deg,#5b5bd6,#c2299a); }
+  .btn-brain .btn-icon svg path,
+  .btn-brain .btn-icon svg rect{ fill:#fff; }
+  .btn-brain:hover{
+    background:linear-gradient(90deg,var(--blue),var(--magenta) 60%,var(--pink));
+    color:#fff;
+    border-color:transparent;
+    box-shadow:0 10px 28px rgba(194,41,154,0.35);
+    transform:translateY(-2px);
+  }
+  .btn-brain:hover .btn-icon{ background:rgba(255,255,255,0.18); }
+  .btn-brain:hover .btn-text-sub{ color:rgba(255,255,255,0.85); }
+  .btn-brain:active,
+  .btn-brain.selected{
+    background:linear-gradient(90deg,var(--blue),var(--magenta) 60%,var(--pink));
+    color:#fff;
+    border-color:transparent;
+    box-shadow:0 4px 18px rgba(194,41,154,0.55);
+    transform:scale(.97);
+  }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Noto Sans KR', sans-serif;
-        }
+  .btn-chat{
+    background:#f4f4f6;
+    border:1.5px solid #eaeaec;
+    color:#3a3f4b;
+    box-shadow:0 6px 16px rgba(106,31,143,0.04);
+  }
+  .btn-chat:hover{
+    background:linear-gradient(90deg,var(--blue),var(--magenta) 60%,var(--pink));
+    color:#fff;
+    border-color:transparent;
+    box-shadow:0 10px 28px rgba(194,41,154,0.35);
+    transform:translateY(-2px);
+  }
+  .btn-chat:hover .btn-icon{ background:rgba(255,255,255,0.18); }
+  .btn-chat:hover .btn-text-sub{ color:rgba(255,255,255,0.85); }
+  .btn-chat:active{
+    background:linear-gradient(90deg,var(--blue),var(--magenta) 60%,var(--pink));
+    border-color:transparent;
+  }
+  .btn-chat.selected{
+    background:linear-gradient(90deg,var(--blue),var(--magenta) 60%,var(--pink));
+    color:#fff;
+    border-color:transparent;
+    box-shadow:0 10px 28px rgba(194,41,154,0.38);
+    transform:scale(.97);
+  }
+  .btn-chat.selected .btn-icon{ background:rgba(255,255,255,0.20); }
+  .btn-chat.selected .btn-text-sub{ color:rgba(255,255,255,0.85); }
+  .btn-chat .btn-icon{ background:linear-gradient(135deg,#5b5bd6,#c2299a); }
+  .btn-chat .btn-icon svg path,
+  .btn-chat .btn-icon svg circle{ fill:#fff; }
+  .btn-chat .btn-text-sub{ color:#9aa0ac; }
 
-        body {
-            background-color: var(--primary-bg);
-            color: var(--text-white);
-            overflow: hidden;
-            height: 100vh;
-        }
+  .footnote{
+    margin-top:24px;
+    font-size:11px;
+    color:#b4b9c2;
+  }
+  .site-footer{
+    position:fixed;
+    bottom:0;
+    left:0;
+    right:0;
+    text-align:center;
+    font-size:11px;
+    color:#aaa;
+    line-height:1.8;
+    padding:12px 16px;
+  }
 
-        .bg-container {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100vh;
-            z-index: -1;
-            background: linear-gradient(to bottom, rgba(13,27,62,0.5), #0d1b3e), url('Gemini_Generated_Image_daeolrdaeolrdaeo.png');
-            background-size: cover;
-            background-position: center;
-        }
-
-        .top-left-logo {
-            position: fixed;
-            top: 30px;
-            left: 30px;
-            z-index: 2000;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            text-decoration: none;
-        }
-
-        .top-right-logo {
-            position: fixed;
-            top: 30px;
-            right: 30px;
-            z-index: 2000;
-        }
-        
-        .top-right-logo img {
-            height: 70px; 
-            width: auto;
-        }
-
-        .logo-mark {
-            height: 60px; 
-            width: auto;
-            filter: drop-shadow(0 2px 2px rgba(0,0,0,0.2));
-        }
-
-        .logo-text-group {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-        }
-
-        .logo-title-kr {
-            font-family: 'Gothic A1', sans-serif;
-            font-size: 1.6rem;
-            font-weight: 900;
-            color: #e0e0e0; 
-            line-height: 1.1;
-            letter-spacing: -0.5px;
-            text-shadow: 0 2px 5px rgba(0,0,0,0.7);
-        }
-
-        .logo-title-en {
-            font-size: 0.55rem;
-            font-weight: 500;
-            color: #cccccc;
-            opacity: 0.9;
-            letter-spacing: 0.5px;
-            margin-top: 3px;
-            text-shadow: 0 2px 5px rgba(0,0,0,0.7);
-        }
-
-        .hero {
-            height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            padding-bottom: 50px;
-        }
-
-        .hero h2 {
-            font-size: 1.8rem;
-            font-weight: 700;
-            margin-bottom: 10px;
-            letter-spacing: 2px;
-            color: #ffffff;
-            text-shadow: 0 2px 15px rgba(0,0,0,0.9);
-        }
-
-        .hero h1 {
-            font-size: 3.5rem;
-            font-weight: 700;
-            margin-bottom: 50px;
-            text-shadow: 0 5px 25px rgba(0,0,0,1);
-        }
-
-        .hero h1 span { 
-            color: var(--accent-color);
-            text-shadow: 0 0 20px rgba(219, 173, 88, 0.5);
-        }
-
-        .enter-card {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            background: rgba(20, 50, 100, 0.25);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            border-radius: 20px;
-            padding: 22px 45px;
-            text-decoration: none;
-            color: white;
-            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
-            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
-            gap: 12px;
-            max-width: 90%;
-        }
-
-        .enter-card:hover {
-            transform: translateY(-5px);
-            background: rgba(20, 50, 100, 0.45);
-            border-color: var(--accent-color);
-            box-shadow: 0 0 30px rgba(219, 173, 88, 0.4);
-        }
-
-        /* 매뉴얼 버튼 스타일 추가 */
-        .shortcut-row {
-            margin-top: 25px;
-            display: flex;
-            gap: 14px;
-            flex-wrap: wrap;
-            justify-content: center;
-        }
-
-        .manual-btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            padding: 12px 35px;
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid var(--accent-color);
-            border-radius: 50px;
-            color: var(--accent-color);
-            text-decoration: none;
-            font-weight: 500;
-            font-size: 1.1rem;
-            transition: all 0.3s ease;
-            backdrop-filter: blur(5px);
-        }
-
-        .manual-btn:hover {
-            background: var(--accent-color);
-            color: #0d1b3e;
-            box-shadow: 0 5px 15px rgba(219, 173, 88, 0.3);
-            transform: scale(1.05);
-        }
-
-        .chatbot-shortcut-btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            padding: 12px 35px;
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(126, 206, 244, 0.6);
-            border-radius: 50px;
-            color: #7ecef4;
-            text-decoration: none;
-            font-weight: 500;
-            font-size: 1.1rem;
-            transition: all 0.3s ease;
-            backdrop-filter: blur(5px);
-            cursor: pointer;
-        }
-
-        .chatbot-shortcut-btn:hover {
-            background: rgba(126, 206, 244, 0.15);
-            border-color: #7ecef4;
-            box-shadow: 0 5px 15px rgba(126, 206, 244, 0.25);
-            transform: scale(1.05);
-        }
-
-        .icon-box {
-            font-size: 4rem;
-            color: var(--accent-color);
-            margin-bottom: 5px;
-            filter: drop-shadow(0 0 10px rgba(219, 173, 88, 0.5));
-        }
-
-        .text-box {
-            font-size: 2rem;
-            font-weight: 700;
-            letter-spacing: -1px;
-            margin-bottom: 5px;
-            text-shadow: 0 2px 5px rgba(0,0,0,0.5);
-        }
-        
-        .sub-text {
-            font-size: 1rem;
-            font-weight: 300;
-            opacity: 0.95;
-            color: rgba(255, 255, 255, 1);
-            line-height: 1.6;
-            word-break: keep-all;
-            text-shadow: 0 1px 3px rgba(0,0,0,0.8);
-        }
-
-        footer {
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            padding: 20px;
-            text-align: center;
-            z-index: 1000;
-            background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
-        }
-
-        footer p {
-            margin: 5px 0;
-            font-size: 0.8rem;
-            color: rgba(255, 255, 255, 0.8);
-            font-weight: 300;
-            letter-spacing: 0.5px;
-            text-shadow: 0 1px 5px rgba(0,0,0,1);
-        }
-
-        /* 카드 내부 안내문 */
-        .card-hint {
-            margin-top: 14px;
-            padding-top: 14px;
-            border-top: 1px solid rgba(255, 255, 255, 0.18);
-            font-size: 0.82rem;
-            font-weight: 400;
-            color: #7ecef4;
-            text-align: center;
-            line-height: 1.65;
-            letter-spacing: -0.2px;
-            word-break: keep-all;
-            opacity: 0.92;
-        }
-
-        .card-hint i {
-            font-size: 0.78rem;
-            margin-right: 5px;
-            opacity: 0.85;
-        }
-
-        /* 하단 안내문 */
-        .chatbot-hint {
-            margin-top: 18px;
-            font-size: 0.82rem;
-            font-weight: 400;
-            color: #7ecef4;
-            text-align: center;
-            line-height: 1.6;
-            letter-spacing: -0.2px;
-            word-break: keep-all;
-            text-shadow: 0 1px 6px rgba(0,0,0,0.6);
-            opacity: 0.92;
-        }
-
-        .chatbot-hint i {
-            font-size: 0.78rem;
-            margin-right: 5px;
-            opacity: 0.85;
-        }
-
-        /* 챗봇 플로팅 버튼 */
-        .chatbot-float {
-            position: fixed;
-            bottom: 90px;
-            right: 30px;
-            z-index: 3000;
-            display: flex;
-            flex-direction: column;
-            align-items: flex-end;
-            gap: 12px;
-        }
-
-        .chatbot-bubble {
-            background: rgba(255, 255, 255, 0.97);
-            color: #1a2d5a;
-            border-radius: 16px 16px 4px 16px;
-            padding: 12px 16px;
-            font-size: 0.82rem;
-            font-weight: 500;
-            line-height: 1.55;
-            max-width: 230px;
-            box-shadow: 0 6px 24px rgba(0, 0, 0, 0.25);
-            word-break: keep-all;
-            position: relative;
-            animation: bubbleFadeIn 0.6s ease;
-            cursor: pointer;
-            text-decoration: none;
-            display: block;
-            transition: box-shadow 0.2s ease, transform 0.2s ease;
-        }
-
-        .chatbot-bubble:hover {
-            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.35), 0 0 0 2px rgba(219, 173, 88, 0.5);
-            transform: translateY(-2px);
-        }
-
-        .chatbot-bubble::after {
-            content: '';
-            position: absolute;
-            bottom: -10px;
-            right: 22px;
-            width: 0;
-            height: 0;
-            border-left: 10px solid transparent;
-            border-right: 0px solid transparent;
-            border-top: 10px solid rgba(255, 255, 255, 0.97);
-        }
-
-        .chatbot-bubble .bubble-label {
-            display: block;
-            font-size: 0.88rem;
-            font-weight: 700;
-            color: #DBAD58;
-            letter-spacing: 0.3px;
-            margin-bottom: 7px;
-        }
-
-        #tw-text {
-            display: block;
-            min-height: 3.6em;
-            line-height: 1.6;
-            word-break: keep-all;
-        }
-
-        .tw-cursor {
-            display: inline-block;
-            width: 2px;
-            height: 0.9em;
-            background: #1a2d5a;
-            margin-left: 1px;
-            vertical-align: middle;
-            animation: cursorBlink 0.7s step-end infinite;
-        }
-
-        @keyframes cursorBlink {
-            0%, 100% { opacity: 1; }
-            50%      { opacity: 0; }
-        }
-
-        .chatbot-btn {
-            width: 76px;
-            height: 76px;
-            border-radius: 50%;
-            background: transparent;
-            border: none;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-decoration: none;
-            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            animation: pulse 2.5s infinite;
-            overflow: visible;
-            padding: 0;
-        }
-
-        .chatbot-btn:hover {
-            transform: scale(1.1);
-            box-shadow: 0 8px 28px rgba(0, 0, 0, 0.5), 0 0 22px rgba(219, 173, 88, 0.5);
-            animation: none;
-        }
-
-        .robot-svg {
-            width: 80px;
-            height: 80px;
-            filter: drop-shadow(0 5px 14px rgba(0,0,0,0.28));
-        }
-
-        @keyframes pulse {
-            0%   { box-shadow: 0 6px 20px rgba(0,0,0,0.4), 0 0 0 0 rgba(219,173,88,0.6); }
-            50%  { box-shadow: 0 6px 20px rgba(0,0,0,0.4), 0 0 0 10px rgba(219,173,88,0); }
-            100% { box-shadow: 0 6px 20px rgba(0,0,0,0.4), 0 0 0 0 rgba(219,173,88,0); }
-        }
-
-        @keyframes bubbleFadeIn {
-            from { opacity: 0; transform: translateY(8px); }
-            to   { opacity: 1; transform: translateY(0); }
-        }
-
-
-        @media (max-width: 768px) {
-            .hero h1 { font-size: 2.5rem; }
-            .hero h2 { font-size: 1.5rem; }
-            .enter-card { padding: 30px 20px; width: 90%; }
-            .manual-btn { padding: 10px 25px; font-size: 0.9rem; }
-            .icon-box { font-size: 3rem; }
-            .text-box { font-size: 1.5rem; }
-            .sub-text { font-size: 0.9rem; }
-
-            .top-left-logo { top: 20px; left: 20px; gap: 10px; }
-            .top-right-logo { top: 20px; right: 20px; }
-            .top-right-logo img { height: 40px; }
-            .logo-mark { height: 40px; }
-            .logo-title-kr { font-size: 1.2rem; }
-            .logo-title-en { font-size: 0.45rem; }
-
-            footer { padding: 15px; }
-            footer p { font-size: 0.6rem; }
-
-            .chatbot-float { bottom: 75px; right: 16px; }
-            .chatbot-bubble { max-width: 190px; font-size: 0.76rem; }
-            .chatbot-btn { width: 60px; height: 60px; }
-            .robot-svg { width: 60px; height: 60px; }
-            .shortcut-row { gap: 10px; }
-            .chatbot-shortcut-btn { padding: 10px 22px; font-size: 0.9rem; }
-        }
-    </style>
+  @keyframes fadeIn{
+    from{opacity:0; transform:translateY(6px);}
+    to{opacity:1; transform:translateY(0);}
+  }
+</style>
 </head>
 <body>
 
-    <div class="bg-container"></div>
+<div class="card">
+  <div class="header-row">
+    <div class="badge"><img src="mark.png" alt="충청남도의회 로고"></div>
+    <div class="brand-text">
+      <div class="brand-kr">충청남도의회<b>AI의정브레인</b></div>
+      <div class="brand-sub">Chungcheongnam-do Council AI Brain</div>
+    </div>
+  </div>
+  <div class="lead">이용하실 서비스를 선택해주세요.</div>
 
-    <a href="https://council.chungnam.go.kr" class="top-left-logo" target="_blank">
-        <img src="mark.png" alt="의회마크" class="logo-mark">
-        <div class="logo-text-group">
-            <div class="logo-title-kr">충청남도의회</div>
-            <div class="logo-title-en">CHUNGCHEONGNAM-DO COUNCIL</div>
-        </div>
+  <div class="btn-group">
+    <a class="btn btn-brain" href="http://115.137.55.154:15150">
+      <div class="btn-icon">
+        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M12 2L3 7v2h18V7l-9-5z"/>
+          <rect x="4" y="10" width="3" height="8" opacity="0.92"/>
+          <rect x="10.5" y="10" width="3" height="8" opacity="0.92"/>
+          <rect x="17" y="10" width="3" height="8" opacity="0.92"/>
+          <rect x="2" y="19" width="20" height="2.4"/>
+        </svg>
+      </div>
+      <div>
+        <div class="btn-text-main">AI의정브레인 웹</div>
+        <div class="btn-text-sub">결산분석 · 회의록 · 행정사무감사 검색</div>
+      </div>
+      <div class="btn-arrow">›</div>
     </a>
 
-    <div class="top-right-logo">
-        <img src="image_12.png" alt="도민중심 행동하는 의회">
-    </div>
+    <a class="btn btn-chat" href="http://121.185.136.195:3000/">
+      <div class="btn-icon">
+        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M4 4h16v11H8l-4 4V4z"/>
+          <circle cx="8.5" cy="9.5" r="1.2"/>
+          <circle cx="12" cy="9.5" r="1.2"/>
+          <circle cx="15.5" cy="9.5" r="1.2"/>
+        </svg>
+      </div>
+      <div>
+        <div class="btn-text-main">AI의정브레인 톡</div>
+        <div class="btn-text-sub">모바일 챗봇으로 빠르게 질의</div>
+      </div>
+      <div class="btn-arrow">›</div>
+    </a>
+  </div>
 
-    <section class="hero">
-        <h2>충청남도의회</h2>
-        <h1><span>AI</span> 의정브레인</h1>
-        
-        <a href="http://121.189.21.229" class="enter-card">
-            <div class="icon-box">
-                <i class="fa-solid fa-chart-pie"></i>
-            </div>
-            <div class="text-box">시스템 접속하기</div>
-            <div class="sub-text">
-                AI 기반 예산·결산 분석 | 행정사무감사 지원<br>
-                회의록 검색 | 자치법규 작성 지원
-            </div>
-            <div class="card-hint">
-                <i class="fa-solid fa-comment-dots"></i>
-                재정용어 및 관련 법령, 충청남도·충청남도 교육청의 예산서 및 사업설명서 등<br>
-                간단한 질문은 챗봇으로도 가능합니다.
-            </div>
-        </a>
+  <div class="footnote">AI 답변은 참고자료입니다. 의사결정 전 원문과 소관부서 확인이 필요합니다.</div>
+</div>
 
-        <div class="shortcut-row">
-            <a href="manual.html" class="manual-btn" target="manual.html">
-                <i class="fa-solid fa-book-open"></i> 사용자 메뉴얼 확인하기
-            </a>
-            <a href="#" class="chatbot-shortcut-btn"
-               onclick="window.open('http://121.185.136.195:3000/','chatbot','width=700,height=880,top='+Math.round((screen.height-750)/2)+',left='+Math.round((screen.width-520)/2)+',resizable=yes,scrollbars=yes'); return false;">
-                <i class="fa-solid fa-comments"></i> AI 챗봇 바로가기
-            </a>
-        </div>
+<footer class="site-footer">
+  <p>[ 32416 ] 충청남도 예산군 삽교읍 도청대로 600(의회동)&nbsp;&nbsp;TEL. 041) 635-5204 / FAX. 041) 635-5292</p>
+  <p>COPYRIGHT © 2019 CHUNGCHEONGNAM-DO COUNCIL. ALL RIGHTS RESERVED.</p>
+</footer>
 
-    </section>
-
-    <!-- 챗봇 플로팅 버튼 -->
-    <div class="chatbot-float">
-        <a href="#" class="chatbot-bubble"
-           onclick="window.open('http://121.185.136.195:3000/','chatbot','width=700,height=880,top='+Math.round((screen.height-750)/2)+',left='+Math.round((screen.width-520)/2)+',resizable=yes,scrollbars=yes'); return false;">
-            <span class="bubble-label">충청남도AI의정브레인 챗봇</span>
-            <span id="tw-text"></span><span class="tw-cursor"></span>
-        </a>
-        <a href="#" class="chatbot-btn" title="충청남도AI의정브레인 챗봇"
-           onclick="window.open('http://121.185.136.195:3000/','chatbot','width=700,height=880,top='+Math.round((screen.height-750)/2)+',left='+Math.round((screen.width-520)/2)+',resizable=yes,scrollbars=yes'); return false;">
-            <svg class="robot-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-label="충청남도의정브레인 챗봇">
-              <defs>
-                <radialGradient id="bg" cx="50%" cy="45%" r="58%">
-                  <stop offset="0" stop-color="#ffffff"/>
-                  <stop offset="1" stop-color="#eef7ff"/>
-                </radialGradient>
-                <linearGradient id="shell" x1="28" y1="20" x2="100" y2="108" gradientUnits="userSpaceOnUse">
-                  <stop offset="0" stop-color="#ffffff"/>
-                  <stop offset="0.58" stop-color="#f8fbff"/>
-                  <stop offset="1" stop-color="#d8e9fb"/>
-                </linearGradient>
-                <linearGradient id="blue" x1="26" y1="19" x2="105" y2="105" gradientUnits="userSpaceOnUse">
-                  <stop offset="0" stop-color="#4a94df"/>
-                  <stop offset="1" stop-color="#123b70"/>
-                </linearGradient>
-                <linearGradient id="screen" x1="34" y1="39" x2="94" y2="89" gradientUnits="userSpaceOnUse">
-                  <stop offset="0" stop-color="#172d4f"/>
-                  <stop offset="1" stop-color="#061423"/>
-                </linearGradient>
-                <radialGradient id="eye" cx="50%" cy="50%" r="58%">
-                  <stop offset="0" stop-color="#e8ffff"/>
-                  <stop offset="1" stop-color="#7be8ff"/>
-                </radialGradient>
-                <filter id="cb-shadow" x="-20%" y="-20%" width="140%" height="140%">
-                  <feDropShadow dx="0" dy="6" stdDeviation="5" flood-color="#123b70" flood-opacity=".22"/>
-                </filter>
-                <filter id="cb-glow" x="-70%" y="-70%" width="240%" height="240%">
-                  <feGaussianBlur stdDeviation="2.2" result="blur"/>
-                  <feMerge>
-                    <feMergeNode in="blur"/>
-                    <feMergeNode in="SourceGraphic"/>
-                  </feMerge>
-                </filter>
-                <style>
-                  .cb-face-screen {
-                    transform-origin: 64px 65px;
-                    animation: cbLookAround 4.8s ease-in-out infinite;
-                  }
-                  .cb-eye {
-                    transform-box: fill-box;
-                    transform-origin: center;
-                    animation: cbBlink 4s infinite;
-                  }
-                  .cb-antenna-light {
-                    animation: cbPulse 2.2s ease-in-out infinite;
-                  }
-                  @keyframes cbLookAround {
-                    0%, 100% { transform: translateX(-3px) skewY(1.5deg) scaleX(.96); }
-                    50%      { transform: translateX(3px) skewY(-1.5deg) scaleX(.96); }
-                  }
-                  @keyframes cbBlink {
-                    0%, 87%, 100%  { transform: scaleY(1); opacity: 1; }
-                    90%, 93%       { transform: scaleY(.08); opacity: .85; }
-                  }
-                  @keyframes cbPulse {
-                    0%, 100% { opacity: .9; }
-                    50%      { opacity: 1; }
-                  }
-                </style>
-              </defs>
-
-              <circle cx="64" cy="64" r="60" fill="url(#bg)"/>
-
-              <g filter="url(#cb-shadow)">
-                <path d="M58 28V16h12v12" fill="none" stroke="#1b4f88" stroke-width="4" stroke-linecap="round"/>
-                <circle class="cb-antenna-light" cx="64" cy="14" r="7" fill="url(#blue)" stroke="#0e315d" stroke-width="2"/>
-                <path d="M46 30c7-8 29-8 36 0 0 7-6 11-18 11s-18-4-18-11z" fill="url(#blue)"/>
-
-                <circle cx="24" cy="66" r="12" fill="url(#blue)" stroke="#0f315e" stroke-width="2.5"/>
-                <circle cx="104" cy="66" r="12" fill="url(#blue)" stroke="#0f315e" stroke-width="2.5"/>
-                <circle cx="24" cy="66" r="6" fill="#ddecfb" opacity=".55"/>
-                <circle cx="104" cy="66" r="6" fill="#ddecfb" opacity=".55"/>
-
-                <path d="M22 62c0-25 18-41 42-41s42 16 42 41v8c0 25-18 38-42 38S22 95 22 70v-8z" fill="url(#shell)" stroke="#c5d7ea" stroke-width="2.8"/>
-                <path d="M29 56c3-17 16-29 35-29s32 12 35 29" fill="none" stroke="#ffffff" stroke-width="5" stroke-linecap="round" opacity=".72"/>
-
-                <g class="cb-face-screen">
-                  <rect x="32" y="42" width="64" height="46" rx="21" fill="url(#screen)" stroke="#dcecff" stroke-width="3"/>
-                  <path d="M39 50c7-5 43-5 50 0" fill="none" stroke="#ffffff" stroke-width="2.5" opacity=".12" stroke-linecap="round"/>
-                  <ellipse class="cb-eye" cx="51" cy="64" rx="6.5" ry="10" fill="url(#eye)" filter="url(#cb-glow)"/>
-                  <ellipse class="cb-eye" cx="77" cy="64" rx="6.5" ry="10" fill="url(#eye)" filter="url(#cb-glow)"/>
-                </g>
-              </g>
-            </svg>
-        </a>
-    </div>
-
-    <footer>
-        <p>[ 32416 ] 충청남도 예산군 삽교읍 도청대로 600(의회동) TEL. 041) 635-5204 / FAX. 041)635-5292</p>
-        <p>COPYRIGHT © 2019 CHUNGCHEONGNAM-DO COUNCIL. ALL RIGHTS RESERVED.</p>
-    </footer>
-
-    <script>
-        (function () {
-            var lines = [
-                "재정용어 및 관련 법령,",
-                "충청남도와 충청남도교육청의",
-                "예산현황 및 사업현황 검색이 가능합니다."
-            ];
-            var el = document.getElementById('tw-text');
-            var lineIdx = 0;
-            var charIdx = 0;
-            var CHAR_DELAY = 65;
-            var LINE_PAUSE = 320;
-            var END_PAUSE  = 1800;
-            var CLEAR_PAUSE = 400;
-
-            function typeLine() {
-                if (charIdx < lines[lineIdx].length) {
-                    el.innerHTML += lines[lineIdx][charIdx];
-                    charIdx++;
-                    setTimeout(typeLine, CHAR_DELAY);
-                } else {
-                    lineIdx++;
-                    charIdx = 0;
-                    if (lineIdx < lines.length) {
-                        el.innerHTML += '<br>';
-                        setTimeout(typeLine, LINE_PAUSE);
-                    } else {
-                        setTimeout(clearAndRestart, END_PAUSE);
-                    }
-                }
-            }
-
-            function clearAndRestart() {
-                el.innerHTML = '';
-                lineIdx = 0;
-                charIdx = 0;
-                setTimeout(typeLine, CLEAR_PAUSE);
-            }
-
-            typeLine();
-        })();
-    </script>
+<script>
+  document.querySelectorAll('.btn').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      document.querySelectorAll('.btn').forEach(function(b){ b.classList.remove('selected'); });
+      this.classList.add('selected');
+    });
+  });
+</script>
 </body>
 </html>
